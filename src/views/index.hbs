@@ -1,0 +1,91 @@
+<div class="mainCtn">
+    {{!-- contenedor de los botones de control --}}
+    <input type="radio" name="NotaOpenClose" id="NotaOpen">
+    <input type="radio" name="NotaOpenClose" id="NotaClosed">
+    <input type="radio" name="ContactOpenClose" id="ContactOpen">
+    <input type="radio" name="ContactOpenClose" id="ContactClosed">
+    <input type="checkbox" name="op" id="selectOp">
+
+    <div class="controlCtn rounder">
+        <button id="updateBtn" class="btn btn-success"><i class="fa-solid fa-rotate-right"></i>Actualizar</button>
+        <input type="checkbox" id="addBtn">
+        <label for="selectOp" class="btn btn-info selectOpt" id="selectOpBtn"></label>
+        <label for="addBtn" class="btn btn-warning" id="plusBtn"><i class="fa-solid fa-plus"></i>Agregar</label>
+
+        <div class="optionAdds rounder">
+            <label for="NotaOpen"><i class="fa-solid fa-pen-to-square"></i>Nota</label>
+            <label for="ContactOpen"><i class="fa-solid fa-user-plus"></i>Contacto</label>
+        </div>
+    </div>
+    {{!-- contenedor de notas --}}
+    <div class="itemsCtn" id="noteItemsCtn">
+        <h2>Notas</h2>
+        <div id="noteCtn"></div>
+    </div>
+    {{!-- contendor de contactos --}}
+    <div class="itemsCtn" id="contactItemsCtn">
+        <h2>Contactos</h2>
+        <div id="contactCtn"></div>
+    </div>
+
+    {{!-- formularios para agregar notas y contacto --}}
+    <div class="darkCtn darkNote">
+        <div class="formCtn rounder noteForm">
+            <div class="titleForm">
+                <h2>Nueva Nota</h2>
+                <label for="NotaClosed"><i class="fa-solid fa-circle-xmark"></i></label>
+            </div>
+            <hr>
+
+            <div class="mb-3">
+                <label for="noteTitle" class="form-label">Titulo</label>
+                <input type="text" class="form-control" id="noteTitle" autofocus placeholder="Ej: Ir de compras...">
+            </div>
+            <div class="mb-3">
+                <label for="notText" class="form-label">Contenido</label>
+                <textarea class="form-control" id="noteText" rows="3"></textarea>
+            </div>
+            <button class="btn btn-success" id="addNote" disabled>Agregar</button>
+            <button class="btn btn-success" id="editNote" disabled>Editar</button>
+
+        </div>
+    </div>
+
+    <div class="darkCtn darkContact">
+        <div class="formCtn rounder contactForm">
+            <div class="titleForm">
+                <h2>Nuevo contacto</h2>
+                <label for="ContactClosed"><i class="fa-solid fa-circle-xmark"></i></label>
+            </div>
+            <hr>
+
+            <div class="mb-3">
+                <label for="contactName" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="contactName" autofocus placeholder="Ej: Fulanito...">
+            </div>
+
+            <div class="mb-3">
+                <label for="contactLastname" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="contactLastname" placeholder="Ej: Castillo">
+            </div>
+
+            <div class="mb-3">
+                <label for="contactPhone" class="form-label">Teléfono</label>
+                <input type="text" class="form-control" id="contactPhone" placeholder="Ej: 22334455">
+            </div>
+
+            <div class="mb-3">
+                <label for="contactSecondphone" class="form-label">Segundo Teléfono</label>
+                <input type="text" class="form-control" id="contactSecondphone" placeholder="Opcional">
+            </div>
+
+            <div class="mb-3">
+                <label for="contactAddress" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="contactAddress" placeholder="Calle #, Ciudad, Pais">
+            </div>
+
+            <button class="btn btn-success" id="addContact" disabled>Agregar</button>
+            <button class="btn btn-success" id="editContact" disabled>Editar</button>
+        </div>
+    </div>
+</div>
