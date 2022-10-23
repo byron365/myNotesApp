@@ -1,5 +1,4 @@
 const express = require('express');
-const morgan = require('morgan');
 const exphbs = require('express-handlebars')
 const path = require('path');
 const env = require('node-env-file');
@@ -8,6 +7,7 @@ const app = express();
 //Inicializaciones
 env(path.join(__dirname,'../.env'))
 if(process.env.NODE_ENV == "development"){
+    const morgan = require('morgan');
     app.use(morgan('dev'));
 }
 app.use(express.static('./src/public'));
