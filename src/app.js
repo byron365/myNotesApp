@@ -7,7 +7,9 @@ const app = express();
 
 //Inicializaciones
 env(path.join(__dirname,'../.env'))
-app.use(morgan('dev'));
+if(process.env.NODE_ENV == "development"){
+    app.use(morgan('dev'));
+}
 app.use(express.static('./src/public'));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
