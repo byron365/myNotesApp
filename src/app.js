@@ -2,13 +2,14 @@ const express = require('express');
 const exphbs = require('express-handlebars')
 const path = require('path');
 const app = express();
+const env = require('node-env-file');
 
 //Inicializaciones
 if(process.env.NODE_ENV == "development"){
     const morgan = require('morgan');
-    const env = require('node-env-file');
-    app.use(morgan('dev'));
     env(path.join(__dirname,'../.env'))
+    app.use(morgan('dev'));
+   
 }
 app.use(express.static('./src/public'));
 app.use(express.urlencoded({extended:true}));
