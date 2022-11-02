@@ -36,13 +36,15 @@ const insertDb = (table = "", columns = [], values=[])=>{
 const selectAllDb = (table = "") =>{
     return new Promise((resolve, reject)=>{
         const query = `SELECT * FROM ${table}`;
-        pool.connect()
-        .then(async client => {
-            await client.query(query,async(err,res)=>{
+        pool.connect((err, client, release)=>{
+            if(err) reject("Ocurrio un error" + err);
+
+            client.query(query,async(err,res)=>{
                 if(err) reject("Ocurrio un error" + err);
                 resolve(res);
+                release(true)
             })
-        }).finally(async x=> await pool.end())
+        })
     })
 }
 
