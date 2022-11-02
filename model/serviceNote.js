@@ -3,7 +3,7 @@ const {insertDb, selectAllDb, editDb, deleteDb} = require('../controller/conecti
 //Funcion para crear una nueva nota
 const newNote = async (title, note, date) =>{
     return new Promise((resolve,rejects)=>{
-       insertDb("notes", ["title","note"], [title,note])
+       insertDb("public.notes", ["title","note"], [title,note])
        .then(res=>{
             resolve({msg:"Se agrego la nota correctamente"})
        }).catch(err =>[
@@ -15,7 +15,7 @@ const newNote = async (title, note, date) =>{
 //Funcion para ver todas las notas
 const showNotes = ()=>{
     return new Promise((resolve,rejects)=>{
-        selectAllDb("notes")
+        selectAllDb("public.notes")
         .then(res=>{
             resolve({msg:"Se trajeron las notas correctamente", res})
         }).catch(err =>[
@@ -27,7 +27,7 @@ const showNotes = ()=>{
 //Funcion para modificar una nota
 const editNote = (id, columns, values)=>{
     return new Promise((resolve,rejects)=>{
-        editDb("notes",id,columns,values)
+        editDb("public.notes",id,columns,values)
         .then(res=>{
             resolve({msg:"Se modifico la nota correctamente"})
         }).catch(err =>[
@@ -39,7 +39,7 @@ const editNote = (id, columns, values)=>{
 //Funcion para eliminar una nota
 const deleteNote = (id) =>{
     return new Promise((resolve,rejects)=>{
-        deleteDb("notes",id)
+        deleteDb("public.notes",id)
         .then(res=>{
             resolve({msg:"Se elimino la nota correctamente"})
         }).catch(err =>[

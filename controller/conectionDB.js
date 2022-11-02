@@ -38,9 +38,10 @@ const selectAllDb = (table = "") =>{
         const query = `SELECT * FROM ${table}`;
         pool.connect()
         .then(async client => {
-            await client.query(query,(err,res)=>{
+            await client.query(query,async(err,res)=>{
                 if(err) reject("Ocurrio un error" + err);
                 resolve(res);
+                await pool.end()
             })
         })
     })
