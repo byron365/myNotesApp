@@ -22,11 +22,12 @@ const insertDb = (table = "", columns = [], values=[])=>{
     return new Promise((resolve,rejects)=>{
         //Se prepara una sentencia sql automatica, coloca las columnas y valores que se le indiquen por parametros sin especificar la cantidad
         const query = `INSERT INTO ${table} (${columns.map(x=> x).toString()}) VALUES (${values.map((x,i)=> `$${i+1}`).toString()})`;
-        pool.connect()
-        .then(async client => {
-            await client.query(query, values, (err,res)=>{
+        pool.connect((error, client, release)=>{
+            if(error)rejects("Ocurrio un error" + error);
+            client.query(query, values, (err,res)=>{
                 if(err) rejects("Ocurrio un error" + err);
                 resolve(res);
+                release(true);
             })
         })
     })
@@ -55,11 +56,13 @@ const editDb = (table = "", id, columns = [], values = [])=>{
         const query = `UPDATE ${table} SET ${columns.map((col,i) => `${col}=$${i+2}`).toLocaleString()} WHERE id=$1`;
         //indexando el id al inicio
         values.unshift(id)
-        pool.connect()
-        .then(async client => {
-            await client.query(query,values,(err,res)=>{
+        pool.connect((err, client, release)=>{
+            if(err) reject("Ocurrio un error" + err);
+
+            client.query(query,values,(err,res)=>{
                 if(err) reject("Ocurrio un error" + err);
                 resolve(res);
+                release(true);
             })
         })
     })
@@ -71,12 +74,13 @@ const deleteDb = (table = "", id) =>{
         const query = `DELETE FROM ${table} WHERE id=$1`;
         const values = [id];
 
-        pool.connect()
-        .then(async client => {
-            await client.query(query,values,(err,res)=>{
+        pool.connect((err, client, release) =>{
+            if(err) reject("Ocurrio un error" + err);
+            
+            client.query(query,values,(err,res)=>{
                 if(err) reject("Ocurrio un error" + err);
                 resolve(res);
-            })
+            })  
         })
     })
 }
