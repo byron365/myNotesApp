@@ -76,10 +76,11 @@ const deleteDb = (table = "", id) =>{
 
         pool.connect((err, client, release) =>{
             if(err) reject("Ocurrio un error" + err);
-            
+
             client.query(query,values,(err,res)=>{
                 if(err) reject("Ocurrio un error" + err);
                 resolve(res);
+                release(true)
             })  
         })
     })
