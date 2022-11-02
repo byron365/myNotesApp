@@ -3,7 +3,6 @@ const exphbs = require('express-handlebars')
 const path = require('path');
 const app = express();
 const env = require('node-env-file');
-env(path.join(__dirname,'../.env'))
 
 //Inicializaciones
 if(process.env.NODE_ENV == "development"){
