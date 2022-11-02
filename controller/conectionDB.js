@@ -41,9 +41,8 @@ const selectAllDb = (table = "") =>{
             await client.query(query,async(err,res)=>{
                 if(err) reject("Ocurrio un error" + err);
                 resolve(res);
-                await pool.end()
             })
-        })
+        }).finally(async x=> await pool.end())
     })
 }
 
